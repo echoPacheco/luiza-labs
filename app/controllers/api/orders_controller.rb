@@ -2,10 +2,10 @@ module Api
   class OrdersController < ApplicationController
     def upload
       file = params[:file]
-      return render json: { error: 'No file' }, status: :bad_request unless file
+      return render json: { error: 'No file provided' }, status: :bad_request unless file
 
       OrderFileProcessorService.new(file).call
-      render json: { message: 'Arquivo processado com sucesso' }
+      render json: { message: 'Order file processed successfully' }
     end
 
     def index
